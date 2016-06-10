@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Movies Again</string>
+    <string name="title_poster_detail">Movie Details</string>
+    <string name="title_activity_reviews">Reviews</string>
+    <string name="rating">Rating</string>
+    <string name="popularity">Popularity</string>
+    <string name="favourites">Favourites</string>
+    <string name="action_settings">Settings</string>
+</resources>
