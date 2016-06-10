@@ -3,6 +3,7 @@ package kienme.moviesagain;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -81,6 +82,14 @@ public class PosterGridViewAdapter extends ArrayAdapter<PosterGridItem>{
 
                 if(PosterListActivity.mTwoPane) {
                     PosterDetailFragment fragment = new PosterDetailFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("name", item.getName());
+                    bundle.putString("image", item.getImage());
+                    bundle.putString("release", item.getRelease());
+                    bundle.putString("rating", item.getRating());
+                    bundle.putString("overview", item.getOverview());
+                    bundle.putString("id", item.getId());
+                    fragment.setArguments(bundle);
                     fragmentManager.beginTransaction()
                             .replace(R.id.poster_detail_container, fragment)
                             .commit();
