@@ -135,7 +135,13 @@ public class PosterDetailFragment extends Fragment {
     }
 
     private void getMovieData() {
-        Bundle data = activity.getIntent().getExtras();
+        Bundle data;
+
+        if(PosterListActivity.mTwoPane)
+            data = getArguments();
+        else
+            data = activity.getIntent().getExtras();
+
         name = data.getString("name");
         image = data.getString("image");
         release = data.getString("release");
@@ -151,18 +157,20 @@ public class PosterDetailFragment extends Fragment {
         TextView ratingView = (TextView) activity.findViewById(R.id.details_rating);
         TextView overviewView = (TextView) activity.findViewById(R.id.details_overview);
 
-        layout.setTitle(name);
         Picasso.with(context).load(image).into(imageView);
         releaseView.setText("Release date: " + release);
         ratingView.setText("Rating: " + rating + "/10");
         overviewView.setText(overview);
 
-        layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, layout.getTitle(), Toast.LENGTH_LONG).show();
-            }
-        });
+        if(!PosterListActivity.mTwoPane) {
+            layout.setTitle(name);
+            layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context, layout.getTitle(), Toast.LENGTH_LONG).show();
+                }
+            });
+        }
     }
 
     public class FetchTrailer extends AsyncTask<String, Void, Boolean> {
